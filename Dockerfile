@@ -2,11 +2,17 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-# Copy everything first
-COPY . .
+# Copy solution and project files first for better caching
+COPY *.sln .
+COPY PopsicleFactory.Api/*.csproj ./PopsicleFactory.Api/
+COPY PopsicleFactory.Tests/*.csproj ./PopsicleFactory.Tests/
 
 # Restore dependencies
 RUN dotnet restore
+
+# Copy source code
+COPY PopsicleFactory.Api/ ./PopsicleFactory.Api/
+COPY PopsicleFactory.Tests/ ./PopsicleFactory.Tests/
 
 # Build the application
 RUN dotnet build -c Release --no-restore
