@@ -36,9 +36,8 @@ public class InMemoryInventoryRepository : IInventoryRepository
             return Task.FromResult(_popsicles.AsEnumerable());
         }
 
-        var results = _popsicles.Where(p => 
-            p.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-            p.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+        var results = _popsicles.Where(p =>
+            p.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
         
         return Task.FromResult(results);
     }
