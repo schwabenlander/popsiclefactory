@@ -5,7 +5,7 @@ namespace PopsicleFactory.Api.Repositories;
 public interface IInventoryRepository
 {
     public Task<IEnumerable<PopsicleModel>> GetAllPopsicles();
-    public Task<PopsicleModel> GetPopsicleByIdAsync(int id);
+    public Task<PopsicleModel?> GetPopsicleByIdAsync(int id);
     public Task<IEnumerable<PopsicleModel>> SearchPopsiclesAsync(string searchTerm);
     public Task<PopsicleModel> CreatePopsicleAsync(PopsicleModel popsicle);
     public Task<PopsicleModel> UpdatePopsicleAsync(PopsicleModel popsicle);

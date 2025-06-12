@@ -1,11 +1,19 @@
+using FluentValidation;
+using PopsicleFactory.Api.Repositories;
+using PopsicleFactory.Api.Validators;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddValidatorsFromAssemblyContaining<PopsicleModelValidator>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configure dependency injection
+//builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
 
 var app = builder.Build();
 
