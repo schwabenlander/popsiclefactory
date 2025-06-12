@@ -1,0 +1,133 @@
+### Variables
+@baseUrl = https://localhost:7212/
+@contentType = application/json
+
+### 1. Get All Popsicles
+GET {{baseUrl}}/Inventory
+Accept: {{contentType}}
+
+### 2. Get Popsicle by ID (Success Case)
+GET {{baseUrl}}/Inventory/1
+Accept: {{contentType}}
+
+### 3. Get Popsicle by ID (Not Found Case)
+GET {{baseUrl}}/Inventory/999
+Accept: {{contentType}}
+
+### 4. Create New Popsicle (Success Case)
+POST {{baseUrl}}/Inventory
+Content-Type: {{contentType}}
+
+{
+  "id": 0,
+  "name": "Strawberry Delight",
+  "description": "A refreshing strawberry flavored popsicle with real fruit pieces"
+}
+
+### 5. Create New Popsicle (Validation Error - Missing Name)
+POST {{baseUrl}}/Inventory
+Content-Type: {{contentType}}
+
+{
+  "id": 0,
+  "name": "",
+  "description": "A popsicle without a name"
+}
+
+### 6. Create New Popsicle (Validation Error - Missing Description)
+POST {{baseUrl}}/Inventory
+Content-Type: {{contentType}}
+
+{
+  "id": 0,
+  "name": "Mystery Flavor",
+  "description": ""
+}
+
+###
+
+### 7. Create New Popsicle (Validation Error - Name Too Long)
+POST {{baseUrl}}/Inventory
+Content-Type: {{contentType}}
+
+{
+  "id": 0,
+  "name": "This is a very long popsicle name that exceeds the maximum allowed length of 100 characters and should fail validation",
+  "description": "A popsicle with a name that's too long"
+}
+
+### 8. Update Existing Popsicle (Success Case)
+PUT {{baseUrl}}/Inventory/1
+Content-Type: {{contentType}}
+
+{
+  "id": 1,
+  "name": "Updated Strawberry Delight",
+  "description": "An updated refreshing strawberry flavored popsicle with real fruit pieces and extra sweetness"
+}
+
+### 9. Update Popsicle (ID Mismatch Error)
+PUT {{baseUrl}}/Inventory/1
+Content-Type: {{contentType}}
+
+{
+  "id": 2,
+  "name": "Mismatched ID Popsicle",
+  "description": "This should fail because the URL ID doesn't match the body ID"
+}
+
+###
+
+### 10. Update Popsicle (Not Found Case)
+PUT {{baseUrl}}/Inventory/999
+Content-Type: {{contentType}}
+
+{
+  "id": 999,
+  "name": "Non-existent Popsicle",
+  "description": "This popsicle doesn't exist in the system"
+}
+
+### 11. Update Popsicle (Validation Error)
+PUT {{baseUrl}}/Inventory/1
+Content-Type: {{contentType}}
+
+{
+  "id": 1,
+  "name": "",
+  "description": "Updated description but missing name"
+}
+
+### 12. Delete Popsicle (Success Case)
+DELETE {{baseUrl}}/Inventory/1
+Accept: {{contentType}}
+
+### 13. Delete Popsicle (Not Found Case)
+DELETE {{baseUrl}}/Inventory/999
+Accept: {{contentType}}
+
+### 14. Search Popsicles (Success Case)
+GET {{baseUrl}}/Inventory/search?searchTerm=strawberry
+Accept: {{contentType}}
+
+### 15. Search Popsicles (Another Search Term)
+GET {{baseUrl}}/Inventory/search?searchTerm=chocolate
+Accept: {{contentType}}
+
+### 16. Search Popsicles (Empty Search Term - Should Fail)
+GET {{baseUrl}}/Inventory/search?searchTerm=
+Accept: {{contentType}}
+
+### 17. Search Popsicles (No Search Term - Should Fail)
+GET {{baseUrl}}/Inventory/search
+Accept: {{contentType}}
+
+### 19. Test Maximum Length Validation (Description)
+POST {{baseUrl}}/Inventory
+Content-Type: {{contentType}}
+
+{
+  "id": 0,
+  "name": "Long Description Test",
+  "description": "This is a very long description that is designed to test the maximum length validation rule for the description field. It needs to be longer than 500 characters to trigger the validation error. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. This should definitely exceed 500 characters now."
+}
