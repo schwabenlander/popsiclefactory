@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{F1BA032D-9283-4561-A929-0122F55C92D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopsicleFactory.Api", "PopsicleFactory.Api\PopsicleFactory.Api.csproj", "{F1BA032D-9283-4561-A929-0122F55C92D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopsicleFactory.Tests", "PopsicleFactory.Tests\PopsicleFactory.Tests.csproj", "{4A4031A6-88D3-44C4-8BF8-A607C08D9B6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +20,9 @@ Global
 		{F1BA032D-9283-4561-A929-0122F55C92D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1BA032D-9283-4561-A929-0122F55C92D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1BA032D-9283-4561-A929-0122F55C92D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A4031A6-88D3-44C4-8BF8-A607C08D9B6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A4031A6-88D3-44C4-8BF8-A607C08D9B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A4031A6-88D3-44C4-8BF8-A607C08D9B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A4031A6-88D3-44C4-8BF8-A607C08D9B6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
