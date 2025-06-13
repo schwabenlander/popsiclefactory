@@ -25,6 +25,7 @@ public class InventoryController(IInventoryRepository inventoryRepository, IVali
     [HttpPost(Name = "CreatePopsicle")]
     public async Task<IActionResult> CreatePopsicle([FromBody] PopsicleModel popsicle)
     {
+        // Validate the request
         var validationResult = await validator.ValidateAsync(popsicle);
         if (!validationResult.IsValid)
         {

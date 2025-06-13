@@ -9,12 +9,28 @@ public class InMemoryInventoryRepository : IInventoryRepository
 
     public InMemoryInventoryRepository()
     {
-        _popsicles = new List<PopsicleModel>
-        {
-            new PopsicleModel { Id = 1, Name = "Strawberry Delight", Description = "Fresh strawberry popsicle with real fruit chunks" },
-            new PopsicleModel { Id = 2, Name = "Blueberry Bliss", Description = "Delicious blueberry popsicle with a hint of lemon" },
-            new PopsicleModel { Id = 3, Name = "Orange Creamsicle", Description = "Creamy orange popsicle with vanilla center" }
-        };
+        _popsicles =
+        [
+            new PopsicleModel
+            {
+                Id = 1,
+                Name = "Strawberry Delight", 
+                Description = "Fresh strawberry popsicle with real fruit chunks"
+            },
+            new PopsicleModel
+            {
+                Id = 2, 
+                Name = "Blueberry Bliss", 
+                Description = "Delicious blueberry popsicle with a hint of lemon"
+            },
+            new PopsicleModel
+            {
+                Id = 3, 
+                Name = "Orange Creamsicle", 
+                Description = "Creamy orange popsicle with vanilla center"
+            }
+        ];
+        
         _nextId = 4;
     }
 
@@ -46,6 +62,7 @@ public class InMemoryInventoryRepository : IInventoryRepository
     {
         popsicle.Id = _nextId++;
         _popsicles.Add(popsicle);
+        
         return Task.FromResult(popsicle);
     }
 
@@ -56,17 +73,24 @@ public class InMemoryInventoryRepository : IInventoryRepository
         {
             _popsicles[existingIndex] = popsicle;
         }
+        else // If the popsicle does not exist, throw an exception
+        {
+            throw new KeyNotFoundException($"Popsicle with ID {popsicle.Id} not found.");
+        }
+        
         return Task.FromResult(popsicle);
     }
 
     public Task<bool> DeletePopsicleAsync(int id)
     {
         var popsicle = _popsicles.FirstOrDefault(p => p.Id == id);
-        if (popsicle != null)
+        if (popsicle is null)
         {
-            _popsicles.Remove(popsicle);
-            return Task.FromResult(true);
+            return Task.FromResult(false);
         }
-        return Task.FromResult(false);
+        
+        _popsicles.Remove(popsicle);
+        
+        return Task.FromResult(true);
     }
 }
