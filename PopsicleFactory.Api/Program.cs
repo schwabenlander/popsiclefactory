@@ -14,9 +14,7 @@ builder.Services.AddSwaggerGen();
 
 
 // Configure dependency injection
-
-// This is singleton because we are using an in-memory repository. Otherwise, it would use scoped.
-builder.Services.AddSingleton<IInventoryRepository, InMemoryInventoryRepository>();
+builder.Services.AddScoped<IInventoryRepository, InMemoryInventoryRepository>();
 
 var app = builder.Build();
 
