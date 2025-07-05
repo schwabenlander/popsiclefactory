@@ -93,4 +93,10 @@ public class InventoryController(IInventoryRepository inventoryRepository, IVali
         var popsicles = await inventoryRepository.SearchPopsiclesAsync(searchTerm);
         return Ok(popsicles);
     }
+    
+    [HttpGet("exception", Name = "Exception")]
+    public IActionResult ThrowException()
+    {
+        throw new InvalidOperationException("This is a test exception");
+    }
 }
